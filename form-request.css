@@ -1,0 +1,591 @@
+/* ============================================================
+   SECTION: فرم درخواست خدمات (Request Form)
+   ============================================================ */
+
+/* ----- متغیرهای محلی سکشن (هماهنگ با تم اصلی) ----- */
+.pest-form-section {
+  --pfm-bg: var(--gray, #f0f4f0);
+  --pfm-text-primary: var(--text-primary, #1A1A1A);
+  --pfm-text-muted: var(--text-muted, #5a5a5a);
+  --pfm-card-bg: var(--white, #ffffff);
+  --pfm-card-border: 1px solid rgba(27, 94, 32, 0.06);
+  --pfm-card-shadow: 0 8px 40px rgba(0, 0, 0, 0.04);
+  --pfm-gold: var(--gold, #D4A843);
+  --pfm-gold-light: var(--gold-light, #E8C97A);
+  --pfm-green-dark: var(--green-dark, #1B5E20);
+  --pfm-green-deep: var(--green-deep, #0D1F0D);
+  --pfm-input-bg: var(--white, #ffffff);
+  --pfm-input-border: 1px solid rgba(27, 94, 32, 0.12);
+  --pfm-input-focus-border: var(--pfm-gold);
+  --pfm-input-shadow: 0 4px 16px rgba(212, 168, 67, 0.06);
+  --pfm-error-color: #e74c3c;
+  --pfm-success-color: #27ae60;
+  --pfm-info-bg: rgba(212, 168, 67, 0.04);
+  --pfm-info-border: 1px solid rgba(212, 168, 67, 0.08);
+}
+
+/* ----- تم تاریک برای سکشن فرم ----- */
+[data-theme="dark"] .pest-form-section {
+  --pfm-bg: #1e2a1e;
+  --pfm-text-primary: #F0F4F0;
+  --pfm-text-muted: #b0b0b0;
+  --pfm-card-bg: #2a3a2a;
+  --pfm-card-border: 1px solid rgba(212, 168, 67, 0.08);
+  --pfm-card-shadow: 0 8px 40px rgba(0, 0, 0, 0.3);
+  --pfm-gold: #E8C97A;
+  --pfm-gold-light: #F0DCA0;
+  --pfm-green-dark: #4CAF50;
+  --pfm-green-deep: #0a1a0a;
+  --pfm-input-bg: #2a3a2a;
+  --pfm-input-border: 1px solid rgba(232, 201, 122, 0.12);
+  --pfm-input-focus-border: var(--pfm-gold);
+  --pfm-input-shadow: 0 4px 16px rgba(232, 201, 122, 0.06);
+  --pfm-error-color: #e74c3c;
+  --pfm-success-color: #2ecc71;
+  --pfm-info-bg: rgba(232, 201, 122, 0.04);
+  --pfm-info-border: 1px solid rgba(232, 201, 122, 0.08);
+}
+
+/* ===== استایل‌های اصلی سکشن ===== */
+.pest-form-section {
+  padding: 5rem 2rem;
+  background: var(--pfm-bg);
+  transition: background 0.3s, color 0.3s;
+  direction: rtl;
+  position: relative;
+}
+
+.pest-form-container {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+/* ===== هدر سکشن ===== */
+.pest-form-header {
+  text-align: center;
+  margin-bottom: 3.5rem;
+}
+
+.pest-form-header .pest-badge {
+  display: inline-block;
+  background: var(--pfm-gold);
+  color: var(--pfm-green-deep);
+  font-weight: 700;
+  font-size: 0.8rem;
+  padding: 0.3rem 1.8rem;
+  border-radius: 60px;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.8rem;
+  box-shadow: 0 4px 16px rgba(212, 168, 67, 0.25);
+  transition: background 0.3s, color 0.3s;
+}
+
+.pest-form-header h2 {
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 800;
+  color: var(--pfm-text-primary);
+  transition: color 0.3s;
+}
+
+.pest-form-header h2 i {
+  color: var(--pfm-gold);
+  margin-left: 0.3rem;
+}
+
+.pest-form-header p {
+  max-width: 600px;
+  margin: 0.6rem auto 0;
+  color: var(--pfm-text-muted);
+  font-size: 1.05rem;
+  line-height: 1.8;
+  transition: color 0.3s;
+}
+
+/* ===== محفظه فرم ===== */
+.pest-form-wrapper {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+/* ===== استایل فرم ===== */
+.pest-form {
+  background: var(--pfm-card-bg);
+  border: var(--pfm-card-border);
+  border-radius: 28px;
+  padding: 2.5rem;
+  box-shadow: var(--pfm-card-shadow);
+  transition: all 0.3s;
+}
+
+/* ردیف‌های فرم */
+.pest-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.pest-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.pest-form-group.full-width {
+  grid-column: 1 / -1;
+}
+
+/* لیبل‌ها */
+.pest-form-group label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--pfm-text-primary);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: color 0.3s;
+}
+
+.pest-form-group label i {
+  color: var(--pfm-gold);
+  font-size: 0.8rem;
+}
+
+/* ورودی‌ها */
+.pest-form-group input,
+.pest-form-group select,
+.pest-form-group textarea {
+  font-family: 'Vazirmatn', sans-serif;
+  padding: 0.8rem 1.2rem;
+  border-radius: 16px;
+  border: var(--pfm-input-border);
+  background: var(--pfm-input-bg);
+  color: var(--pfm-text-primary);
+  font-size: 0.95rem;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  width: 100%;
+  outline: none;
+}
+
+.pest-form-group input::placeholder,
+.pest-form-group select::placeholder,
+.pest-form-group textarea::placeholder {
+  color: var(--pfm-text-muted);
+  opacity: 0.6;
+}
+
+.pest-form-group input:focus,
+.pest-form-group select:focus,
+.pest-form-group textarea:focus {
+  border-color: var(--pfm-input-focus-border);
+  box-shadow: 0 0 0 4px rgba(212, 168, 67, 0.08), var(--pfm-input-shadow);
+}
+
+.pest-form-group select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23D4A843' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: left 1rem center;
+  cursor: pointer;
+}
+
+.pest-form-group textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+/* پیام خطا */
+.pest-form-error {
+  font-size: 0.7rem;
+  color: var(--pfm-error-color);
+  display: none;
+  margin-top: 0.2rem;
+}
+
+.pest-form-group.error input,
+.pest-form-group.error select,
+.pest-form-group.error textarea {
+  border-color: var(--pfm-error-color);
+  box-shadow: 0 0 0 4px rgba(231, 76, 60, 0.08);
+}
+
+.pest-form-group.error .pest-form-error {
+  display: block;
+}
+
+/* ===== چک‌باکس ===== */
+.pest-form-checkbox-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.pest-form-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: var(--pfm-text-muted);
+  position: relative;
+  user-select: none;
+}
+
+.pest-form-checkbox input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.pest-form-checkmark {
+  width: 22px;
+  height: 22px;
+  min-width: 22px;
+  border: 2px solid var(--pfm-input-border);
+  border-radius: 6px;
+  background: var(--pfm-input-bg);
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pest-form-checkmark::after {
+  content: '✓';
+  color: var(--pfm-gold);
+  font-size: 14px;
+  font-weight: 700;
+  opacity: 0;
+  transform: scale(0);
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.pest-form-checkbox input:checked + .pest-form-checkmark {
+  border-color: var(--pfm-gold);
+  background: var(--pfm-gold);
+}
+
+.pest-form-checkbox input:checked + .pest-form-checkmark::after {
+  opacity: 1;
+  transform: scale(1);
+  color: var(--pfm-green-deep);
+}
+
+.pest-form-checkbox:hover .pest-form-checkmark {
+  border-color: var(--pfm-gold);
+}
+
+.pest-form-checkbox-label {
+  color: var(--pfm-text-muted);
+  transition: color 0.3s;
+}
+
+.pest-form-checkbox-label a {
+  color: var(--pfm-gold);
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.pest-form-checkbox-label a:hover {
+  color: var(--pfm-green-dark);
+  text-decoration: underline;
+}
+
+.pest-form-checkbox-group.error .pest-form-error {
+  display: block;
+}
+
+/* ===== دکمه ارسال ===== */
+.form-actions-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.btn-form-submit {
+  background: linear-gradient(135deg, var(--pfm-gold), var(--pfm-gold-light));
+  color: var(--pfm-green-deep);
+  padding: 0.9rem 3rem;
+  border: none;
+  border-radius: 60px;
+  font-weight: 700;
+  font-size: 1.05rem;
+  font-family: 'Vazirmatn', sans-serif;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 0 8px 30px rgba(212, 168, 67, 0.2);
+}
+
+.btn-form-submit:hover {
+  transform: scale(1.05) translateX(-4px);
+  box-shadow: 0 12px 44px rgba(212, 168, 67, 0.35);
+}
+
+.btn-form-submit:active {
+  transform: scale(0.95);
+}
+
+.btn-form-submit i {
+  font-size: 0.8rem;
+  transition: 0.3s;
+}
+
+.btn-form-submit:hover i {
+  transform: translateX(-4px);
+}
+
+.btn-form-submit:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ===== پیام موفقیت ===== */
+.pest-form-success {
+  display: none;
+  background: rgba(39, 174, 96, 0.06);
+  border: 2px solid var(--pfm-success-color);
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin-top: 1.5rem;
+  align-items: center;
+  gap: 1.2rem;
+  animation: pestFormSuccess 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.pest-form-success.show {
+  display: flex;
+}
+
+@keyframes pestFormSuccess {
+  0% { opacity: 0; transform: translateY(20px) scale(0.95); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.pest-form-success i {
+  font-size: 2.8rem;
+  color: var(--pfm-success-color);
+  flex-shrink: 0;
+}
+
+.pest-form-success h4 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--pfm-text-primary);
+  margin-bottom: 0.2rem;
+}
+
+.pest-form-success p {
+  font-size: 0.9rem;
+  color: var(--pfm-text-muted);
+  margin: 0;
+}
+
+/* ===== اطلاعات تماس جانبی ===== */
+.pest-form-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.pest-form-info-box {
+  background: var(--pfm-card-bg);
+  border: var(--pfm-info-border);
+  border-radius: 20px;
+  padding: 1.5rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: var(--pfm-card-shadow);
+}
+
+.pest-form-info-box:hover {
+  transform: translateY(-4px);
+  border-color: var(--pfm-gold);
+  box-shadow: 0 12px 40px rgba(212, 168, 67, 0.06);
+}
+
+.pest-form-info-box i {
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  background: rgba(212, 168, 67, 0.06);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  color: var(--pfm-gold);
+  transition: 0.3s;
+}
+
+.pest-form-info-box:hover i {
+  background: var(--pfm-gold);
+  color: var(--pfm-green-deep);
+}
+
+.pest-form-info-box div {
+  display: flex;
+  flex-direction: column;
+}
+
+.pest-form-info-label {
+  font-size: 0.6rem;
+  font-weight: 600;
+  color: var(--pfm-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.pest-form-info-value {
+  font-size: 1rem;
+  color: var(--pfm-text-primary);
+  font-weight: 600;
+}
+
+.pest-form-info-value.small {
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: var(--pfm-text-muted);
+}
+
+.pest-form-info-value a {
+  color: inherit;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.pest-form-info-value a:hover {
+  color: var(--pfm-gold);
+}
+
+.pest-form-info-box.highlight {
+  border-color: var(--pfm-gold);
+  background: rgba(212, 168, 67, 0.03);
+}
+
+.pest-form-info-box.highlight i {
+  background: var(--pfm-gold);
+  color: var(--pfm-green-deep);
+}
+
+/* ===== ریسپانسیو ===== */
+@media (max-width: 1024px) {
+  .pest-form-wrapper {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .pest-form-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .pest-form-section {
+    padding: 3rem 1.2rem;
+  }
+
+  .pest-form {
+    padding: 1.8rem;
+  }
+
+  .pest-form-row {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+  }
+
+  .pest-form-group.full-width {
+    grid-column: auto;
+  }
+
+  .form-actions-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .btn-form-submit {
+    width: 100%;
+    justify-content: center;
+    padding: 0.8rem 2rem;
+    font-size: 0.95rem;
+  }
+
+  .pest-form-checkbox-group {
+    align-items: flex-start;
+  }
+
+  .pest-form-info {
+    grid-template-columns: 1fr;
+  }
+
+  .pest-form-info-box {
+    padding: 1.2rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .pest-form-section {
+    padding: 2rem 0.8rem;
+  }
+
+  .pest-form {
+    padding: 1.2rem;
+    border-radius: 20px;
+  }
+
+  .pest-form-group label {
+    font-size: 0.75rem;
+  }
+
+  .pest-form-group input,
+  .pest-form-group select,
+  .pest-form-group textarea {
+    padding: 0.6rem 1rem;
+    font-size: 0.85rem;
+    border-radius: 12px;
+  }
+
+  .pest-form-info-box {
+    padding: 1rem;
+  }
+
+  .pest-form-info-box i {
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    font-size: 1rem;
+  }
+
+  .pest-form-info-value {
+    font-size: 0.9rem;
+  }
+
+  .pest-form-checkbox {
+    font-size: 0.8rem;
+  }
+
+  .pest-form-success {
+    flex-direction: column;
+    text-align: center;
+    padding: 1.2rem;
+  }
+
+  .pest-form-success i {
+    font-size: 2.2rem;
+  }
+}
